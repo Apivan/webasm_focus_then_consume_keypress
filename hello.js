@@ -3123,7 +3123,14 @@ function copyTempDouble(ptr) {
             // preventDefault for keys that don't generate a character. Otherwise,
             // preventDefault is the right thing to do in general.
             if (event.type !== 'keydown' || (!SDL.unicode && !SDL.textInput) || (event.keyCode === 8 /* backspace */ || event.keyCode === 9 /* tab */)) {
-              event.preventDefault();
+
+              if (document.activeElement === Module['canvas']) {
+                event.preventDefault();
+              }
+              else
+              {
+                break;
+              }
             }
   
             if (event.type == 'mousedown') {
